@@ -59,7 +59,8 @@ public class ConsultationController {
         // For reference check the method getForTests() method from LabRequestController class
 
         // replace this line of code with your implementation
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
+        //throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
+	return testRequestQueryService.findBy(RequestStatus.LAB_TEST_COMPLETED);
 
 
     }
@@ -76,8 +77,9 @@ public class ConsultationController {
         // For reference check the method getForTests() method from LabRequestController class
 
         // replace this line of code with your implementation
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
-
+        //throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
+	User tester = userLoggedInService.getLoggedInUser();
+	return testRequestQueryService.findByDoctor(tester);
 
 
 
@@ -98,7 +100,9 @@ public class ConsultationController {
         // For reference check the method assignForLabTest() method from LabRequestController class
         try {
             // replace this line of code with your implementation
-            throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
+            //throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
+	User tester =userLoggedInService.getLoggedInUser();
+	return testRequestUpdateService.assignForConsultation(id,tester);
 
         }catch (AppException e) {
             throw asBadRequest(e.getMessage());
@@ -121,8 +125,9 @@ public class ConsultationController {
 
         try {
             // replace this line of code with your implementation
-            throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
-
+            //throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED,"Not implemented");
+		User tester =userLoggedInService.getLoggedInUser();
+		return testRequestUpdateService.updateConsultation(id,testResult,tester);
 
         } catch (ConstraintViolationException e) {
             throw asConstraintViolation(e);
